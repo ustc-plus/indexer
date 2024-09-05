@@ -29,6 +29,7 @@ LpManager.StartMinting.handler(async ({ event, context }) => {
     creator: event.params.creator,
     depositId: event.params.depositId,
     usdcAmount: event.params.usdcAmount,
+    txid: event.transaction.hash
   };
 
   context.LpManager_StartMinting.set(entity);

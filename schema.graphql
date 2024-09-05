@@ -10,6 +10,7 @@ type LpManager_StartMinting {
   creator: String!
   depositId: BigInt!
   usdcAmount: BigInt!
+  txid: String!
 }
 
 type LpManager_Unwrap {
