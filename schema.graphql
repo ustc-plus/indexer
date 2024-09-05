@@ -33,3 +33,9 @@ type LpNft_Transfer {
   tokenId: BigInt!
 }
 
+type LpNft_Redeem {
+  id: ID!
+  tokenId: BigInt!
+  reflectAmount: BigInt!
+  tAmount: BigInt!
+}
