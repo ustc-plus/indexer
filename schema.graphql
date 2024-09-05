@@ -1,0 +1,35 @@
+type LpManager_EndMinting {
+  id: ID!
+  creator: String!
+  depositIdIsTokenId: BigInt!
+  _ustcPlusAmount: BigInt!
+}
+
+type LpManager_StartMinting {
+  id: ID!
+  creator: String!
+  depositId: BigInt!
+  usdcAmount: BigInt!
+}
+
+type LpManager_Unwrap {
+  id: ID!
+  creator: String!
+  _terraAddress: String!
+  _ustcPlusAmount: BigInt!
+}
+
+type LpManager_Wrap {
+  id: ID!
+  creator: String!
+  _terraAddress: String!
+  _ustcPlusAmount: BigInt!
+}
+
+type LpNft_Transfer {
+  id: ID!
+  from: String!
+  to: String!
+  tokenId: BigInt!
+}
+

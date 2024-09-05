@@ -1,0 +1,35 @@
+# yaml-language-server: $schema=./node_modules/envio/evm.schema.json
+name: UstcPlusIndexer
+contracts:
+- name: LpManager
+  handler: src/EventHandlers.ts
+  events:
+  - event: EndMinting(address indexed creator, uint256 indexed depositIdIsTokenId, uint256 _ustcPlusAmount)
+  - event: StartMinting(address indexed creator, uint256 indexed depositId, uint256 usdcAmount)
+  - event: Unwrap(address indexed creator, bytes32 indexed _terraAddress, uint256 _ustcPlusAmount)
+  - event: Wrap(address indexed creator, bytes32 indexed _terraAddress, uint256 _ustcPlusAmount)
+- name: LpNft
+  handler: src/EventHandlers.ts
+  events:
+  - event: Transfer(address indexed from, address indexed to, uint256 indexed tokenId)
+  - event: Redeem(uint256 tokenId, uint256 reflectAmount, uint256 tAmount)
+networks:
+- id: 56
+  start_block: 41961527
+  contracts:
+  - name: LpNft
+    address:
+    - 0x0564C3e8Fe23c5A6220A300c303f41e43D9be9e2
+  - name: LpManager
+    address:
+    - 0xCb3B96E8c57E90b8B74959c8475cD3245D02f053
+- id: 137
+  start_block: 61408202
+  contracts:
+  - name: LpNft
+    address:
+    - 0xF53dc83E9cE56612dd47cA24e7439C204B602A22
+  - name: LpManager
+    address:
+    - 0xD4D1bcDED5ADd4DC3EE975C0feEFce8F244D15b6
+rollback_on_reorg: false
