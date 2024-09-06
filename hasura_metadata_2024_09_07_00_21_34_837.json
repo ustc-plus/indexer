@@ -1,0 +1,374 @@
+{
+  "resource_version": 214,
+  "metadata": {
+    "version": 3,
+    "sources": [
+      {
+        "name": "default",
+        "kind": "postgres",
+        "tables": [
+          {
+            "table": {
+              "name": "LpManager_EndMinting",
+              "schema": "public"
+            },
+            "select_permissions": [
+              {
+                "role": "public",
+                "permission": {
+                  "columns": "*",
+                  "filter": {}
+                }
+              }
+            ],
+            "event_triggers": [
+              {
+                "name": "LpEndMinting",
+                "definition": {
+                  "enable_manual": false,
+                  "insert": {
+                    "columns": "*"
+                  }
+                },
+                "retry_conf": {
+                  "interval_sec": 10,
+                  "num_retries": 5,
+                  "timeout_sec": 30
+                },
+                "webhook": "http://host.docker.internal:3001/sync/end-minting",
+                "headers": [
+                  {
+                    "name": "{{SECREY_KEY}}",
+                    "value": "9:08PM"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "LpManager_StartMinting",
+              "schema": "public"
+            },
+            "select_permissions": [
+              {
+                "role": "public",
+                "permission": {
+                  "columns": "*",
+                  "filter": {}
+                }
+              }
+            ],
+            "event_triggers": [
+              {
+                "name": "LpStartMinting",
+                "definition": {
+                  "enable_manual": false,
+                  "insert": {
+                    "columns": "*"
+                  }
+                },
+                "retry_conf": {
+                  "interval_sec": 10,
+                  "num_retries": 5,
+                  "timeout_sec": 30
+                },
+                "webhook": "http://host.docker.internal:3001/sync/start-minting",
+                "headers": [
+                  {
+                    "name": "SECRET_KEY",
+                    "value": "9:08PM"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "LpManager_Unwrap",
+              "schema": "public"
+            },
+            "select_permissions": [
+              {
+                "role": "public",
+                "permission": {
+                  "columns": "*",
+                  "filter": {}
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "LpManager_Wrap",
+              "schema": "public"
+            },
+            "select_permissions": [
+              {
+                "role": "public",
+                "permission": {
+                  "columns": "*",
+                  "filter": {}
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "LpNft_Redeem",
+              "schema": "public"
+            },
+            "select_permissions": [
+              {
+                "role": "public",
+                "permission": {
+                  "columns": "*",
+                  "filter": {}
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "LpNft_Transfer",
+              "schema": "public"
+            },
+            "select_permissions": [
+              {
+                "role": "public",
+                "permission": {
+                  "columns": "*",
+                  "filter": {}
+                }
+              }
+            ],
+            "event_triggers": [
+              {
+                "name": "LpTransfer",
+                "definition": {
+                  "enable_manual": false,
+                  "insert": {
+                    "columns": "*"
+                  }
+                },
+                "retry_conf": {
+                  "interval_sec": 10,
+                  "num_retries": 5,
+                  "timeout_sec": 30
+                },
+                "webhook": "http://host.docker.internal:3001/sync/nft-transfer",
+                "headers": [
+                  {
+                    "name": "SECRET_KEY",
+                    "value": "9:08PM"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "chain_metadata",
+              "schema": "public"
+            },
+            "select_permissions": [
+              {
+                "role": "public",
+                "permission": {
+                  "columns": "*",
+                  "filter": {}
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "dynamic_contract_registry",
+              "schema": "public"
+            },
+            "select_permissions": [
+              {
+                "role": "public",
+                "permission": {
+                  "columns": "*",
+                  "filter": {}
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "end_of_block_range_scanned_data",
+              "schema": "public"
+            },
+            "select_permissions": [
+              {
+                "role": "public",
+                "permission": {
+                  "columns": "*",
+                  "filter": {}
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "entity_history",
+              "schema": "public"
+            },
+            "object_relationships": [
+              {
+                "name": "event",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "block_number": "block_number",
+                      "chain_id": "chain_id",
+                      "log_index": "log_index"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "raw_events",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "public",
+                "permission": {
+                  "columns": "*",
+                  "filter": {}
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "entity_history_filter",
+              "schema": "public"
+            },
+            "object_relationships": [
+              {
+                "name": "event",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "block_number": "block_number",
+                      "chain_id": "chain_id",
+                      "log_index": "log_index"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "raw_events",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "public",
+                "permission": {
+                  "columns": "*",
+                  "filter": {}
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "event_sync_state",
+              "schema": "public"
+            },
+            "select_permissions": [
+              {
+                "role": "public",
+                "permission": {
+                  "columns": "*",
+                  "filter": {}
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "persisted_state",
+              "schema": "public"
+            },
+            "select_permissions": [
+              {
+                "role": "public",
+                "permission": {
+                  "columns": "*",
+                  "filter": {}
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "raw_events",
+              "schema": "public"
+            },
+            "array_relationships": [
+              {
+                "name": "event_history",
+                "using": {
+                  "manual_configuration": {
+                    "column_mapping": {
+                      "block_number": "block_number",
+                      "chain_id": "chain_id",
+                      "log_index": "log_index"
+                    },
+                    "insertion_order": null,
+                    "remote_table": {
+                      "name": "entity_history",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "public",
+                "permission": {
+                  "columns": "*",
+                  "filter": {}
+                }
+              }
+            ]
+          }
+        ],
+        "functions": [
+          {
+            "function": {
+              "name": "get_entity_history_filter",
+              "schema": "public"
+            },
+            "comment": "This function helps search for articles"
+          }
+        ],
+        "configuration": {
+          "connection_info": {
+            "database_url": {
+              "from_env": "HASURA_GRAPHQL_DATABASE_URL"
+            },
+            "isolation_level": "read-committed",
+            "pool_settings": {
+              "connection_lifetime": 600,
+              "idle_timeout": 180,
+              "max_connections": 50,
+              "retries": 10
+            },
+            "use_prepared_statements": true
+          }
+        }
+      }
+    ]
+  }
+}
